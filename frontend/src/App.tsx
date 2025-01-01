@@ -14,7 +14,7 @@ const App = () => {
 
   const mutation = useMutation<AxiosResponse, Error, void, unknown>({
     mutationFn: () =>
-      axios.post("https://commit-garam.netlify.app", {
+      axios.post("https://commit-garam.netlify.app/git/generate-commit/", {
         userMessage: userPrompt,
       }),
     onSuccess: (data) => {
