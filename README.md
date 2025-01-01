@@ -53,4 +53,7 @@ Commit Garam is a fun and engaging tool designed for developers who want to spic
 1. **Clone the Repository**:
 2. **npm i**
 3. **npm start for backend**
+
+## Images
+<img src="https://res.cloudinary.com/aayushmhrznn/image/upload/v1735750308/commit-garam_okunah.png" />
    
