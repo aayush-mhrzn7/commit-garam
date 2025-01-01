@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
-import { ClipboardType } from "lucide-react";
+import { ClipboardType, Terminal } from "lucide-react";
 import Loader from "./components/ui/Loader";
 import NEpali from "./assets/Nepali.png";
 
@@ -14,21 +14,24 @@ const App = () => {
 
   const mutation = useMutation<AxiosResponse, Error, void, unknown>({
     mutationFn: () =>
-      axios.post("https://commit-garam.netlify.app/git/generate-commit/", {
+      axios.post("http://localhost:8000/git/generate-commit", {
         userMessage: userPrompt,
       }),
     onSuccess: (data) => {
       setGeneratedPrompt(data?.data?.commitMessages);
-      console.log(data?.data?.commitMessages.split("\n\n"));
     },
     onError: (error) => {
       console.error(error);
     },
   });
-
+  useEffect(() => {
+    window.alert(
+      "No Messages are stored in the database once you leave this site your history wont be saved"
+    );
+  }, []);
   return (
-    <div className="bg-primary-foreground min-h-screen text-primary font-primary">
-      <div className="mx-auto max-w-5xl pt-16 p-4 z-50 lg:p-20">
+    <div className="bg-primary-foreground overflow-hidden  text-primary font-primary">
+      <div className="mx-auto max-w-5xl pt-12 p-4 overflow-hidden lg:p-20">
         <div className="">
           <h1 className="text-center  font-primaryBold font-bold text-5xl tracking-wide">
             Commit Garam!
